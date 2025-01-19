@@ -27,3 +27,7 @@ func main() {
 
 	linked.Traverse()
 }
+
+func init() {
+  
+}
