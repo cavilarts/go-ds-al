@@ -72,7 +72,47 @@ func (d *DoublyLinkedList) Append(value int) {
   d.tail = node
 }
 
-func (d *DoublyLinkedList) Remove() {}
+func (d *DoublyLinkedList) Remove(value int) {
+  curr := d.head
+  length := d.Length()
+
+  for i:=0; curr && i < length; i++ {
+    if curr.value == value {
+      break
+    }
+    curr := curr.Next
+  }
+
+  if curr == nill {
+    return
+  }
+
+  if length == 0 {
+    d.head = nil
+    d.tail = nil
+  }
+
+  if curr.Prev != nil {
+    curr.Prev = curr.Next
+  }
+
+  if curr.Next != nil {
+    curr.Next = curr.Prev
+  }
+  
+  if curr != d.head {
+    d.head = curr.Next
+  }
+  
+  if curr != d.tail {
+    d.tail = curr.Prev
+  }
+
+  curr.Prev = nil
+  curr.Next = nil
+
+  return curr.Value
+}
 
 func (d *DoublyLinkedList) RemoveAt() {}
 
